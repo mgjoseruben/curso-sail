@@ -23,7 +23,8 @@ Route::get('/prueba', function () {
     return view('prueba.template');
 });
 
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth','verified','users']);
+Route::get('/users/notificar/{id}', [UserController::class, 'notify'])->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
